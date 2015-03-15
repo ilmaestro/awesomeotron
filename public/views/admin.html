@@ -1,0 +1,32 @@
+<div class="text-center">
+    <h3>Admin - Playlists</h3>
+
+	<div class="searchBox">
+		<alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+	    <input type="text" ng-model="newPlaylist" class="search-query" placeholder="Playlist name">
+	    <button ng-click="add()" class="btn btn-primary pull-right"><i class="icon-white icon-plus"></i> Add new playlist</button>
+	</div>
+</div>
+
+<div class="text-center">
+	<p>search: <input type="text" ng-model="search.name" class="search-query" placeholder="Search Playlists" /></p>
+</div>
+
+<table class="table">
+	<thead>
+	<tr>
+		<th>Playlist</th>
+		<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="playlist in playlists | filter:search">
+		<td data-title="'Name'"><span>{{playlist.name}}</span></td>
+		<td>
+			<a ng-click="remove($index)" class="btn btn-default btn-xs">Delete</a
+		</td>
+	</tr>
+	</tbody>
+</table>
+
+{{ playlists | json }}

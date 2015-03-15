@@ -1,0 +1,32 @@
+<div class="row">
+    <div class="col-xs-12">
+        <h3>{{playlist.name}} <small>by {{playlist.author}}</small></h3>
+        <span class="label label-primary">Created: <small>{{playlist.createdOn | date: 'shortDate'}}</small></span>
+        <span class="label label-success">Last Updated: <small>{{playlist.lastUpdated | date: 'fullDate'}}</small></span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+
+        <div ng-show="yt.videoid">
+            <youtube width="{{yt.width}}" height="{{yt.height}}" videoid="{{yt.videoid}}"></youtube>
+        </div>
+
+        <button ng-click="play_video()" class="btn btn-primary">Play</button>
+        <button ng-click="next_video()" class="btn btn-warning">Skip</button>
+        <span class="label label-default">{{playerStatus}}: {{currentVideo.title}}</span>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <a href="/">Back to playlists</a>
+        <div>
+            <h3>Videos <span class="badge">{{playlist.video.length}}</span></h3>
+            <p><a href="#/playlist/edit/{{playlist._id}}">Edit playlist</a></p>
+            <ol>
+                <li ng-repeat="vid in playlist.video"><span ng-class="{'text-danger': isCurrentVideo(vid.url)}">{{vid.title}}</span></li>
+            </ol>
+        </div>
+        
+    </div>
+</div>

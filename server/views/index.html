@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+
+<html ng-app="kidsApp" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title><%= title %></title>
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.css" />
+        <link rel="stylesheet" href="/styles/site.css" />
+    </head>
+    <body>
+        <div class="container-fluid" ng-view></div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-route.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-resource.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular-animate.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.min.js"></script>
+
+        <script src="/scripts/module.js"></script>
+        <script src="/scripts/service.js"></script>
+        <script src="/scripts/directives.js"></script>
+        <script src="/scripts/controllers/indexController.js"></script>
+        <script src="/scripts/controllers/playlistController.js"></script>
+        <script src="/scripts/controllers/adminController.js"></script>
+        <script src="/scripts/controllers/playlistEditController.js"></script>
+    </body>
+</html>

@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-xs-12">
+		<h1>Awesome-o-Tron</h1>
+		
+		<a href="/#/playlist/edit/newplaylist">New playlist</a>
+	</div>
+
+</div>
+<div class="row">
+	<div class="col-xs-12">
+		<h3>Today's playlists...</h3>
+		<ul>
+			<li ng-repeat="playlist in playlists | orderBy: '-lastUpdated'">
+				<a ng-click="play(playlist._id)" href="">{{playlist.name}}</a> [{{playlist.author}}] - {{playlist.lastUpdated | date: 'fullDate'}}
+			</li>
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<toaster-container></toaster-container>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>{{playlist.name}}</h2>
+        <div ng-show="id">
+            <a href="/#/playlist/{{id}}" class="btn btn-primary">View playlist</a>
+            <button ng-click="removePlaylist()" class="btn btn-danger">Delete playlist</button>
+        </div>
+        <a href="/">Back to playlists</a>
+    </div>
+    <div class="col-xs-12">
+        <form role="form" ng-submit="save()">
+            <h3>Playlist Info</h3>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" required ng-model="playlist.name" class="form-control" id="name" />
+            </div>
+
+            <div class="form-group">
+                <label for="author">Author:</label>
+                <input type="text" required ng-model="playlist.author" class="form-control" id="author" />
+            </div>
+            <button type="submit" class="btn btn-info">Save</button>
+        </form>
+    </div>
+    <div class="col-xs-12">
+        <h3>Videos</h3>
+        <input type="text" ng-paste="addVideo()" ng-model="newVideoUrl" class="form-control" placeholder="Paste youtube URL" />
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>VideoId</th>
+                        <th width="50">Action</th>
+                        <th width="50">Move</th>
+                        <th width="50"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="video in playlist.video | orderBy: 'order'">
+                        <td><input type="text" ng-model="video.title" class="form-control" /></td>
+                        <td><input type="text" ng-model="video.url" class="form-control" /></td>
+                        <td><button class="btn btn-danger" ng-click="removeVideo($index)">Delete</button></td>
+                        <td><button class="btn btn-info glyphicon glyphicon-arrow-up" ng-click="moveVideo($index,-1)" ng-hide="$first"></button></td>
+                        <td><button class="btn btn-success glyphicon glyphicon-arrow-down" ng-click="moveVideo($index,1)" ng-hide="$last"></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>
