@@ -4,36 +4,49 @@
     var app = angular.module("kidsApp");
     
     app.controller('playlistCtrl', function ($scope, dbService, $routeParams, $timeout, $log) {
-        var initialWidth = angular.element(document.querySelector('#yt-display'))[0].offsetWidth;
+        var initialWidth = angular.element(document.querySelector('#yt-display'))[0].offsetWidth - 30, //30 seems to be correct with the given theme...
+            initialHeight = Math.min(480, Math.round(initialWidth / 1.77)); // 16:9 aspect, unless its greater than 480.
+
         $scope.currentVideo = null;
-        var index = 0;
+        var currentVideoIndex = 0;
 
         $scope.yt = {
-            width: initialWidth - 30, 
-            height: 480, 
-            videoid: "6eZ9miBIF_A",
+            width: initialWidth, 
+            height: initialHeight, 
+            videoid: "6eZ9miBIF_A", //TV TEST pattern by default.. in case of "off air"
+        };
+
+        var changeVideo = function(){
+            $scope.currentVideo = $scope.playlist.video[currentVideoIndex];
+            $scope.yt.videoid = $scope.currentVideo.url;
         };
 
         $scope.isCurrentVideo = function(url){
         	return $scope.currentVideo.url == url;
         };
 
+
         $scope.prev_video = function () {
-            index--;
-            if(index < 0)
-                index = ($scope.playlist.video.length - 1);
-            $scope.currentVideo = $scope.playlist.video[index];
-            $scope.yt.videoid = $scope.currentVideo.url;
+            currentVideoIndex--;
+            if(currentVideoIndex < 0)
+                currentVideoIndex = ($scope.playlist.video.length - 1);
+            changeVideo();
         };
 
         $scope.next_video = function () {
-            index++;
-            if(index > ($scope.playlist.video.length - 1))
-            	index = 0;
-            $scope.currentVideo = $scope.playlist.video[index];
-            $scope.yt.videoid = $scope.currentVideo.url;
+            currentVideoIndex++;
+            if(currentVideoIndex > ($scope.playlist.video.length - 1))
+            	currentVideoIndex = 0;
+            changeVideo();
         };
-        
+
+        $scope.play = function(index){
+            if(index < 0 || index > ($scope.playlist.video.length - 1))
+                return;
+            currentVideoIndex = index;
+            changeVideo();
+        };
+
         $scope.play_video = function () {
             $scope.$broadcast("PLAY");
         };
@@ -54,7 +67,7 @@
             $scope.playerStatus = data;
             switch (data) {
                 case "CUED":
-                	if(index > 0){
+                	if(currentVideoIndex > 0){
 	                	//wait a sec, then hit play
 	                	$timeout(function(){
 			        		console.log("broadcasting play signal...");

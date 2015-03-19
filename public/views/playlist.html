@@ -17,8 +17,6 @@
               <li class="next"><a ng-click="next_video()" href="">Next →</a></li>
             </ul>
         </div>
-        
-        
     </div>
 </div>
 <div class="row">
@@ -27,7 +25,12 @@
             <h3>Videos <span class="badge">{{playlist.video.length}}</span></h3>
             <p><a href="#/playlist/edit/{{playlist._id}}">Edit playlist</a></p>
             <div class="list-group">
-                <div ng-repeat="vid in playlist.video" class="list-group-item" ng-class="{'active': isCurrentVideo(vid.url)}">{{vid.title}}</div>
+                <div class="list-group-item" 
+                     ng-repeat="vid in playlist.video" 
+                     ng-class="{'active': isCurrentVideo(vid.url)}"
+                     ng-click="play($index)">
+                     {{vid.title}}
+                </div>
             </div>
         </div>
         
