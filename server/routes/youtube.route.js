@@ -10,8 +10,8 @@ GET /youtube/:id
 router.get("/:id", function (req, response, next) {
     //var url = encodeURIComponent(req.params.id);
     var youtubeUrl = url.parse(decodeURIComponent(req.params.id));
-    var videoId = querystring.parse(youtubeUrl.query).v;
-
+    var videoId = youtubeUrl.hostname === 'youtu.be' ? youtubeUrl.pathname.slice(1) : querystring.parse(youtubeUrl.query).v;
+    
     request({
         url: 'http://youtube.com/oembed?url=' + req.params.id + '&format=json', 
         json: true

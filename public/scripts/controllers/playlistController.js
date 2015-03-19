@@ -4,19 +4,28 @@
     var app = angular.module("kidsApp");
     
     app.controller('playlistCtrl', function ($scope, dbService, $routeParams, $timeout, $log) {
+        var initialWidth = angular.element(document.querySelector('#yt-display'))[0].offsetWidth;
+        $scope.currentVideo = null;
+        var index = 0;
+
         $scope.yt = {
-            width: 600, 
+            width: initialWidth - 30, 
             height: 480, 
             videoid: "6eZ9miBIF_A",
         };
-        $scope.currentVideo = null;
 
         $scope.isCurrentVideo = function(url){
         	return $scope.currentVideo.url == url;
         };
 
-        var index = 0;
-        
+        $scope.prev_video = function () {
+            index--;
+            if(index < 0)
+                index = ($scope.playlist.video.length - 1);
+            $scope.currentVideo = $scope.playlist.video[index];
+            $scope.yt.videoid = $scope.currentVideo.url;
+        };
+
         $scope.next_video = function () {
             index++;
             if(index > ($scope.playlist.video.length - 1))

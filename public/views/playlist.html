@@ -6,26 +6,29 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
+    <div class="col-xs-12" id="yt-display">
 
         <div ng-show="yt.videoid">
             <youtube width="{{yt.width}}" height="{{yt.height}}" videoid="{{yt.videoid}}"></youtube>
+            <ul class="pager">
+              <li class="previous"><a ng-click="prev_video()" href="">← Prev</a></li>
+              <!-- <li><button ng-click="play_video()" class="btn btn-primary">Play</button></li> -->
+              <li><span class="label label-info">{{playerStatus}}: {{currentVideo.title}}</span></li>
+              <li class="next"><a ng-click="next_video()" href="">Next →</a></li>
+            </ul>
         </div>
-
-        <button ng-click="play_video()" class="btn btn-primary">Play</button>
-        <button ng-click="next_video()" class="btn btn-warning">Skip</button>
-        <span class="label label-default">{{playerStatus}}: {{currentVideo.title}}</span>
+        
+        
     </div>
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <a href="/">Back to playlists</a>
         <div>
             <h3>Videos <span class="badge">{{playlist.video.length}}</span></h3>
             <p><a href="#/playlist/edit/{{playlist._id}}">Edit playlist</a></p>
-            <ol>
-                <li ng-repeat="vid in playlist.video"><span ng-class="{'text-danger': isCurrentVideo(vid.url)}">{{vid.title}}</span></li>
-            </ol>
+            <div class="list-group">
+                <div ng-repeat="vid in playlist.video" class="list-group-item" ng-class="{'active': isCurrentVideo(vid.url)}">{{vid.title}}</div>
+            </div>
         </div>
         
     </div>

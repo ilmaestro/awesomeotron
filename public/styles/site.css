@@ -1,18 +1,14 @@
 ﻿body {
-    background-color: #432523;
-    color: #efefef;
 }
 
 button, input {
-    color: #333333;
+}
+
+.under-nav-fix {
+	margin-top: 80px;
 }
 
 .searchBox {
 	width: 400px;
 }
 
-.gridStyle {
-    border: 1px solid rgb(212,212,212);
-    height: 300px;
-    color: #333333;
-}

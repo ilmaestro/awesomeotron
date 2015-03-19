@@ -48,6 +48,7 @@
     <Content Include="public\views\admin.html" />
     <Content Include="public\views\playlist.html" />
     <Content Include="README.md" />
+    <Content Include="server\views\ytdl.html" />
     <Content Include="server\views\index.html" />
   </ItemGroup>
   <ItemGroup>

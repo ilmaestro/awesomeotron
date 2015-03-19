@@ -12,6 +12,7 @@
     "ejs": "^2.3.1",
     "express": "~4.12.2",
     "mongoose": "^3.9.7",
-    "request": "^2.53.0"
+    "request": "^2.53.0",
+    "youtube-dl": "^1.10.1"
   }
 }
