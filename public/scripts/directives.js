@@ -2,6 +2,20 @@
 (function(){
     var app = angular.module('kidsApp');
 
+    app.directive('resizable', function($window) {
+      return function($scope) {
+        $scope.initializeWindowSize = function() {
+          $scope.windowHeight = $window.outerHeight;
+          return $scope.windowWidth = $window.outerWidth;
+        };
+        $scope.initializeWindowSize();
+        return angular.element($window).bind('resize', function() {
+          $scope.initializeWindowSize();
+          return $scope.$apply();
+        });
+      };
+    });
+
     app.directive('youtube', function ($window, $log, YouTubeLoader) {
         return {
             restrict: "E",

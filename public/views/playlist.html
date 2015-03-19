@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-xs-12" id="yt-display">
 
-        <div ng-show="yt.videoid">
-            <youtube width="{{yt.width}}" height="{{yt.height}}" videoid="{{yt.videoid}}"></youtube>
+        <div ng-show="yt.videoid" class="center-block">
+            <youtube resizable width="{{YTWidth()}}" height="{{YTHeight()}}" videoid="{{yt.videoid}}"></youtube>
             <ul class="pager">
               <li class="previous"><a ng-click="prev_video()" href="">← Prev</a></li>
               <!-- <li><button ng-click="play_video()" class="btn btn-primary">Play</button></li> -->

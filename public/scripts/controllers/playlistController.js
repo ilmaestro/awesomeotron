@@ -4,16 +4,25 @@
     var app = angular.module("kidsApp");
     
     app.controller('playlistCtrl', function ($scope, dbService, $routeParams, $timeout, $log) {
-        var initialWidth = angular.element(document.querySelector('#yt-display'))[0].offsetWidth - 30, //30 seems to be correct with the given theme...
-            initialHeight = Math.min(480, Math.round(initialWidth / 1.77)); // 16:9 aspect, unless its greater than 480.
+        //var ytWidth = $scope.windowWidth - 30, //angular.element(document.querySelector('#yt-display'))[0].offsetWidth - 30, //30 seems to be correct with the given theme...
+        //    YTHeight = Math.min(480, Math.round(initialWidth / 1.77)); // 16:9 aspect, unless its greater than 480.
 
         $scope.currentVideo = null;
         var currentVideoIndex = 0;
+        var widthOffset = .93;
 
         $scope.yt = {
-            width: initialWidth, 
-            height: initialHeight, 
+            width: $scope.windowWidth - widthOffset, 
+            height: Math.min(480, Math.round(($scope.windowWidth - widthOffset) / 1.77)), 
             videoid: "6eZ9miBIF_A", //TV TEST pattern by default.. in case of "off air"
+        };
+
+        $scope.YTWidth = function(){
+            return Math.min(1134, $scope.windowWidth * widthOffset);
+        };
+
+        $scope.YTHeight = function(){
+            return Math.min(480, Math.round(($scope.windowWidth * widthOffset) / 1.77));
         };
 
         var changeVideo = function(){
