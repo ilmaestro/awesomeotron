@@ -19,6 +19,8 @@ router.get("/:id", function (req, response, next) {
         if (!err && req_res.statusCode === 200) {
             body.videoId = videoId;
             response.send(body); // send the json response
+        } else {
+            response.send(err)
         }
     });
 });
